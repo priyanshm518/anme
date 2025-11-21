@@ -1,0 +1,162 @@
+body {
+  margin: 0;
+  font-family: 'Arial';
+  background: #f5f5f5;
+  color: #222;
+  transition: background 0.3s, color 0.3s;
+}
+
+body.dark-mode {
+  background: #0b0c10;
+  color: white;
+}
+
+header {
+  background: #1f2833;
+  padding: 20px;
+  text-align: center;
+  color: #66fcf1;
+}
+
+input {
+  margin-top: 10px;
+  padding: 10px;
+  width: 60%;
+  border-radius: 8px;
+  border: none;
+  font-size: 15px;
+}
+
+button {
+  margin-left: 10px;
+  padding: 10px 15px;
+  border-radius: 8px;
+  border: none;
+  cursor: pointer;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  gap: 20px;
+  padding: 20px;
+}
+
+.card {
+  background: #1f2833;
+  border-radius: 10px;
+  padding: 12px;
+  text-align: center;
+  cursor: pointer;
+  transition: transform 0.2s;
+}
+
+.card:hover {
+  transform: scale(1.05);
+}
+
+.card img {
+  width: 100%;
+  border-radius: 10px;
+}
+
+.title {
+  margin-top: 10px;
+  font-weight: bold;
+}
+
+.slider {
+  display: flex;
+  overflow-x: auto;
+  gap: 15px;
+  padding: 10px;
+}
+
+.slider .card {
+  min-width: 150px;
+}
+
+.details {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 20px;
+}
+
+.details img {
+  max-width: 300px;
+  border-radius: 10px;
+}
+
+.details h2 {
+  margin-top: 10px;
+  color: #66fcf1;
+}
+
+.details p {
+  max-width: 600px;
+  text-align: center;
+}
+
+.episodes {
+  margin-top: 20px;
+  width: 90%;
+  max-width: 800px;
+}
+
+.episode-card {
+  background: #1f2833;
+  margin: 10px 0;
+  padding: 10px;
+  border-radius: 8px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.episode-card button {
+  padding: 5px 10px;
+  border-radius: 5px;
+  border: none;
+  background: #45a29e;
+  color: white;
+  cursor: pointer;
+}
+
+.episode-card button:hover {
+  background: #66fcf1;
+}
+
+.pagination {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 20px;
+}
+
+.page-btn {
+  padding: 8px 12px;
+  margin: 0 5px;
+  background: #45a29e;
+  color: white;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+.page-btn:hover {
+  background: #66fcf1;
+}
+
+@media (max-width: 768px) {
+  .grid {
+    grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+  }
+
+  .details p {
+    max-width: 90%;
+  }
+}
+button#toggleMode {
+  background: #45a29e;
+  color: white;
+}   

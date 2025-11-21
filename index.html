@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Anime Explorer</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body class="light-mode">
+
+<header>
+  <h1>Anime Explorer</h1>
+  <input id="searchInput" type="text" placeholder="Search anime...">
+  <button id="toggleMode">Dark/Light Mode</button>
+</header>
+
+<main>
+  <section>
+    <h2>Trending Anime</h2>
+    <div id="trendingSlider" class="slider"></div>
+  </section>
+
+  <section>
+    <h2>Filter by Genre</h2>
+    <select id="genreFilter">
+      <option value="">All Genres</option>
+    </select>
+  </section>
+
+  <section>
+    <h2>Search Results</h2>
+    <div id="animeList" class="grid"></div>
+    <div id="pagination" class="pagination"></div>
+  </section>
+</main>
+
+<script src="app.js"></script>
+</body>
+</html>
