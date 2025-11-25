@@ -2,12 +2,10 @@ const animeDetails = document.getElementById("animeDetails");
 const charactersDiv = document.getElementById("characters");
 const episodesDiv = document.getElementById("episodes");
 const toggleModeBtn = document.getElementById("toggleMode");
-
 // Dark/Light Mode
 toggleModeBtn.addEventListener("click", () => {
   document.body.classList.toggle("dark-mode");
 });
-
 // Get Anime ID from URL
 const urlParams = new URLSearchParams(window.location.search);
 const animeId = urlParams.get("id");
@@ -42,7 +40,6 @@ function displayDetails(anime) {
     <h2>${anime.title.romaji}</h2>
     <p>${anime.description}</p>
   `;
-
   // Characters
   charactersDiv.innerHTML = "";
   anime.characters.edges.forEach(c => {
@@ -54,7 +51,6 @@ function displayDetails(anime) {
     `;
     charactersDiv.appendChild(charCard);
   });
-
   // Episodes
   episodesDiv.innerHTML = "";
   const totalEpisodes = anime.episodes || 12;
@@ -68,5 +64,4 @@ function displayDetails(anime) {
     episodesDiv.appendChild(epCard);
   }
 }
-
 fetchAnimeDetails(animeId);
