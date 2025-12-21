@@ -3,9 +3,11 @@ const charactersDiv = document.getElementById("characters");
 const episodesDiv = document.getElementById("episodes");
 const toggleModeBtn = document.getElementById("toggleMode");
 // Dark/Light Mode
+
 toggleModeBtn.addEventListener("click", () => {
   document.body.classList.toggle("dark-mode");
 });
+
 // Get Anime ID from URL
 const urlParams = new URLSearchParams(window.location.search);
 const animeId = urlParams.get("id");
