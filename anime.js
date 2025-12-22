@@ -18,7 +18,7 @@ async function fetchAnimeDetails(id) {
   query ($id: Int) {
     Media(id:$id, type:ANIME) {
       id
-      title { romaji }
+      title { romani }
       description(asHtml:false)
       coverImage { large }
       episodes
@@ -38,8 +38,8 @@ async function fetchAnimeDetails(id) {
 
 function displayDetails(anime) {
   animeDetails.innerHTML = `
-    <img src="${anime.coverImage.large}" alt="${anime.title.romaji}">
-    <h2>${anime.title.romaji}</h2>
+    <img src="${anime.coverImage.large}" alt="${anime.title.roma}">
+    <h2>${anime.title.Romani}</h2>
     <p>${anime.description}</p>
   `;
   // Characters
