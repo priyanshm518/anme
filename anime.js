@@ -40,7 +40,7 @@ function displayDetails(anime) {
   animeDetails.innerHTML = `
     <img src="${anime.coverImage.large}" alt="${anime.title.roma}">
     <h2>${anime.title.Romani}</h2>
-    <p>${anime.description}</p>
+    <p>${anime.description}</p>                           
   `;
   // Characters
   charactersDiv.innerHTML = "";
