@@ -2,8 +2,8 @@ const animeDetails = document.getElementById("animeDetails");
 const charactersDiv = document.getElementById("characters");
 const episodesDiv = document.getElementById("episodes");
 const toggleModeBtn = document.getElementById("toggleMode");
-// Dark/Light Mode
 
+// Dark/Light Mode
 toggleModeBtn.addEventListener("click", () => {
   document.body.classList.toggle("dark-mode");
 });
@@ -15,36 +15,53 @@ const animeId = urlParams.get("id");
 // Fetch Anime Details
 async function fetchAnimeDetails(id) {
   const query = `
-  query ($id: Int) {
-    Media(id:$id, type:ANIME) {
-      id
-      title { romani }
-      description(asHtml:false)
-      coverImage { large }
-      episodes
-      siteUrl
-      characters { edges { node { name { full } image { medium } } } }
+    query ($id: Int) {
+      Media(id: $id, type: ANIME) {
+        id
+        title { romaji }
+        description(asHtml: false)
+        coverImage { large }
+        episodes
+        siteUrl
+        characters {
+          edges {
+            node {
+              name { full }
+              image { medium }
+            }
+          }
+        }
+      }
     }
-  }`;
-  const variables = { id: parseInt(id) };
-  const res = await fetch("https://graphql.anilist.co", {
-    method: "POST",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify({ query, variables })
-  });
-  const data = await res.json();
-  displayDetails(data.data.Media);
+  `;
+
+  const variables = { id: Number(id) };
+
+  try {
+    const res = await fetch("https://graphql.anilist.co", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ query, variables })
+    });
+
+    const data = await res.json();
+    displayDetails(data.data.Media);
+  } catch (err) {
+    animeDetails.innerHTML = "<p>Failed to load anime details.</p>";
+    console.error(err);
+  }
 }
 
 function displayDetails(anime) {
   animeDetails.innerHTML = `
-    <img src="${anime.coverImage.large}" alt="${anime.title.roma}">
-    <h2>${anime.title.Romani}</h2>
-    <p>${anime.description}</p>                           
+    <img src="${anime.coverImage.large}" alt="${anime.title.romaji}">
+    <h2>${anime.title.romaji}</h2>
+    <p>${anime.description || "No description available."}</p>
   `;
+
   // Characters
   charactersDiv.innerHTML = "";
-  anime.characters.edges.forEach(c => {
+  anime.characters?.edges?.forEach(c => {
     const charCard = document.createElement("div");
     charCard.classList.add("card");
     charCard.innerHTML = `
@@ -53,17 +70,24 @@ function displayDetails(anime) {
     `;
     charactersDiv.appendChild(charCard);
   });
+
   // Episodes
   episodesDiv.innerHTML = "";
-  const totalEpisodes = anime.episodes || 12;
+  const totalEpisodes = anime.episodes ?? 12;
+
   for (let i = 1; i <= totalEpisodes; i++) {
     const epCard = document.createElement("div");
     epCard.classList.add("episode-card");
     epCard.innerHTML = `
       <span>Episode ${i}</span>
-      <a href="${anime.siteUrl}" target="_blank"><button>Watch Legally</button></a>
+      <a href="${anime.siteUrl}" target="_blank">
+        <button>Watch Legally</button>
+      </a>
     `;
     episodesDiv.appendChild(epCard);
   }
 }
-fetchAnimeDetails(animeId);
+
+if (animeId) {
+  fetchAnimeDetails(animeId);
+}
