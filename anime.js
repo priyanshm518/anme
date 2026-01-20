@@ -15,7 +15,7 @@ const animeId = urlParams.get("id");
 
 // Fetch Anime Details
 async function fetchAnimeDetails(id) {
-  const query = `
+  const query = 
     query ($id: Int) {
       Media(id: $id, type: ANIME) {
         id
